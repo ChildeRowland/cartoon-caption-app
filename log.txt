@@ -1,0 +1,24 @@
+March 31, 2016
+
+npm init
+npm install mongodb
+npm install express --save
+npm install body-parser --save
+npm install mongoose --save
+
+server.js
+	require the db and express
+	call db.connect function and app.listen
+
+
+db.js
+	require MongoClient
+	export functions for connecting to the db
+		get
+		connect
+		close
+
+models/caption.js
+	require mongoose
+	mongoose.connect() to the mongo DB.
+	export the mongoose model object as 'caption'.
