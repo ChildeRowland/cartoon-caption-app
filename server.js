@@ -1,7 +1,7 @@
 var express 	= require('express');
 var app 		= express();
 var bodyParser 	= require('body-parser');
-var mongoOp 	= require('./caption.js');
+var mongoOp 	= require('./image.js');
 
 //var db = require('./db.js');
 
@@ -14,7 +14,68 @@ router.get('/', function (req,res){
     res.json({"error" : false,"message" : "Hello World"});
 })
 
-router.route('/captions')
+router.route('/images/')
+
+	.get(function (req, res) {
+		var response = {};
+		mongoOp.find({}, function (error, data) {
+			if ( error ) {
+				response = {"error" : true, "message": "Error fetching the data"};
+			} else {
+				response = {"error": false, "message": data};
+			}
+			res.json(response);
+		});
+	})
+
+	.post(function (req, res) {
+		var db = new mongoOp();
+		var response = {};
+		db.img = req.body.img;
+
+		db.save(function (error) {
+			if ( error ) {
+				response = {"error" : true, "message" : "Error adding data"};
+			} else {
+				response = {"error" : false, "message" : "Caption added"};
+			}
+			res.json(response);
+		});
+	});
+
+router.route('/images/:id') 
+	.get(function (req, res) {
+		var id = req.params.id;
+
+		var response = {};
+		mongoOp.findById(id, function (error, data) {
+			if ( error ) {
+					response = {"error" : true, "message": "Error fetching the data"};
+				} else {
+					response = {"error": false, "message": data};
+				}
+			res.json(response);
+		})
+});
+
+router.route('/images/:id/captions')
+	.post(function (req, res) {
+		var id = req.params.id;
+
+		var response = {};
+		mongoOp.findById(id, function (error, doc) {
+			if ( error ) {
+					response = {"error" : true, "message": "Error fetching the data"};
+				} else {
+					//response = {"error": false, "message": data};
+					doc.captions.push({ text: req.body.text});
+					doc.save();
+				}
+			res.json(response);
+		})
+	});
+
+router.route('/captions/')
 
 	.get(function (req, res) {
 		var response = {};

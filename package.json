@@ -2,6 +2,7 @@
   "name": "caption_contest_mean",
   "version": "1.0.0",
   "description": "upload cartoons, add captions, vote on your favorite",
+  "repository": "https://github.com/ChildeRowland/cartoon-caption-app.git",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
