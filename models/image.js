@@ -6,10 +6,6 @@ mongoose.connect('mongodb://localhost/testDb', function () {
 
 var Schema = mongoose.Schema;
 
-// var image = new Schema({
-// 	img: { data: Buffer, contentType: String }
-// });
-
 var captionSchema = new Schema({
 	text: String,
 	meta: {
@@ -18,7 +14,9 @@ var captionSchema = new Schema({
 }, { timestamps: true });
 
 var imageSchema = new Schema({
-	img: String,
+	location: String,
+	description: String,
+	//src: { data: Buffer, contentType: String }
 	captions: [captionSchema]
 });
 

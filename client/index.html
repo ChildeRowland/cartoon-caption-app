@@ -1,5 +1,31 @@
 <html>
-	<h1>
-		Hello Tacos
-	</h1>
+
+	<header>
+		<title>Cartoon Caption Contest</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+	    <script src="assets/app.js"></script>
+	</header>
+
+	<body  ng-app="captionApp">
+		<div ng-controller="MainController as ctrl">
+			<h1 ng-bind="ctrl.working">
+				Not So Nacho
+			</h1>
+
+		<div ng-repeat="image in ctrl.images">
+			<img ng-src="{{image.location}}" 
+		 	 style="max-width: 375px">
+		 	 <div ng-repeat="caption in image.captions">
+		 	 	<span ng-bind="caption.text"></span><br><br>
+		 	 </div>
+		</div>
+
+		<pre>
+			{{ ctrl.images | json }}
+		</pre>
+
+		</div>
+	</body>
 </html>

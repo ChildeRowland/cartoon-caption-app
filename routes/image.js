@@ -26,7 +26,8 @@ module.exports = function (router) {
 		.post(function (req, res) {
 			var db = new mongoOp();
 			var response = {};
-			db.img = req.body.img;
+			db.location = req.body.location;
+			db.description = req.body.description;
 
 			db.save(function (error) {
 				if ( error ) {
