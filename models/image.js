@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/testDb');
+mongoose.connect('mongodb://localhost/testDb', function () {
+	// mongoose.connection.db.dropDatabase();
+});
 
 var Schema = mongoose.Schema;
 

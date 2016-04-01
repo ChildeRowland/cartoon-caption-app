@@ -1,3 +1,4 @@
+##############
 March 31, 2016
 
 npm init
@@ -22,3 +23,37 @@ models/caption.js
 	require mongoose
 	mongoose.connect() to the mongo DB.
 	export the mongoose model object as 'caption'.
+
+
+#############
+April 1, 2016
+	
+	models/image.js
+		require mongoose
+		mongoose.connect() to mongo DB
+		export the mongoose model object as 'image'
+		move 'caption' as a subdoc of 'image'
+
+	routes/image.js
+		require express, body-parser, models/image.js
+		routes
+			GET 	images
+			POST 	images
+			GET 	images/id
+			GET 	images/id/captions
+			POST 	images/id/captions
+
+	server.js
+		set the view engine, views,
+		use assets
+		require the imageRouter function
+		process.env.PORT
+
+	archived
+		caption.js - now part of models/image.js
+		db.js - not needed with monogoose module
+
+
+
+
+
