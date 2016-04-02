@@ -28,6 +28,9 @@ models/caption.js
 #############
 April 1, 2016
 	
+	node_modules
+		ui-bootstrap
+
 	models/image.js
 		require mongoose
 		mongoose.connect() to mongo DB
@@ -46,12 +49,21 @@ April 1, 2016
 	server.js
 		set the view engine, views,
 		use assets
+		use scripts
 		require the imageRouter function
 		process.env.PORT
 
 	archived
 		caption.js - now part of models/image.js
 		db.js - not needed with monogoose module
+
+	client
+		app.js
+			angular module captionApp
+		index.html
+			view images and captions
+			add captions
+
 
 
 
