@@ -1,4 +1,4 @@
-angular.module('captionApp', [])
+angular.module('captionApp', ['ui.bootstrap'])
 
 .controller('MainController', function ($http) {
 	var self = this;
@@ -15,4 +15,19 @@ angular.module('captionApp', [])
 	}, function onError(error) {
 		console.log(error);
 	});
+
+	self.add = function (string, id) {
+
+		$http({
+			method: 'POST',
+			url: '/images/' + id + '/captions',
+			data: { "text" : string }
+		}).then(function onSuccess(success) {
+			console.log("NICE");
+		}, function onError(error) {
+			console.log('STINKER');
+		});
+
+	};
+
 });

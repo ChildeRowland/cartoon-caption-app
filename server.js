@@ -5,6 +5,7 @@ var router 		= express.Router();
 	app.set('view engine', 'html');
 	app.set('views', __dirname + '/client');
 	app.use('/assets', express.static(__dirname + '/client'));
+	app.use('/scripts', express.static(__dirname + '/node_modules'));
 
 var bodyParser 	= require('body-parser');
 	app.use(bodyParser.json());
