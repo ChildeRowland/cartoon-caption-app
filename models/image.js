@@ -8,9 +8,7 @@ var Schema = mongoose.Schema;
 
 var captionSchema = new Schema({
 	text: String,
-	meta: {
-		votes: Number
-	}
+	votes: { type: Number, default: 0 }
 }, { timestamps: true });
 
 var imageSchema = new Schema({

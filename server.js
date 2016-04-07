@@ -1,6 +1,6 @@
-var express 	= require('express');
-var app 		= express();
-var router 		= express.Router();
+var express 	= require('express'),
+	app 		= express(),
+	router 		= express.Router();
 	app.engine('html', require('ejs').renderFile);
 	app.set('view engine', 'html');
 	app.set('views', __dirname + '/client');

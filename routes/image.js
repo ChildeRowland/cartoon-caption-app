@@ -1,6 +1,6 @@
-var express 	= require('express');
-var app 		= express();
-var router 		= express.Router();
+var express 	= require('express'),
+	app 		= express(),
+	router 		= express.Router();
 var bodyParser 	= require('body-parser');
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({"extended" : false}));
@@ -33,7 +33,7 @@ module.exports = function (router) {
 				if ( error ) {
 					response = {"error" : true, "message" : "Error adding data"};
 				} else {
-					response = {"error" : false, "message" : "Caption added"};
+					response = {"error" : false, "message" : "image added"};
 				}
 				res.json(response);
 			});
@@ -63,7 +63,7 @@ module.exports = function (router) {
 				if ( error ) {
 						response = {"error" : true, "message" : "Error fetching the image document"};
 					} else {
-						doc.captions.push({ text: req.body.text});
+						doc.captions.push({ text: req.body.text });
 						doc.save();
 						response = {"error" : false, "message" : doc};
 					}
@@ -73,8 +73,8 @@ module.exports = function (router) {
 
 		.get(function (req, res) {
 			var id = req.params.id;
-
 			var response = {};
+			
 			mongoOp.findById(id, function (error, doc) {
 				if ( error ) {
 					response = {"error" : true, "message": "error fetching the image document"};
@@ -83,6 +83,23 @@ module.exports = function (router) {
 				}
 				res.json(response);
 			})
+		});
+
+	router.route('/images/:id/captions/:_id')
+		.post(function (req, res) {
+			var id = req.params.id;
+			var response = {};
+
+			mongoOp.findById(id, function (error, doc) {
+				if ( error ) {
+						response = {"error" : true, "message" : "Error fetching the image document"};
+					} else {
+						doc.captions.push({ text: req.body.text });
+						doc.save();
+						response = {"error" : false, "message" : doc};
+					}
+				res.json(response);
+			})			
 		});
 
 };

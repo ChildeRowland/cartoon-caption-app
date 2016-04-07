@@ -13,20 +13,32 @@
 				Not So Nacho
 			</h1>
 
-		<div ng-repeat="image in ctrl.images">
-			<img ng-src="{{image.location}}" 
+			<input type="number"
+				   ng-model="ctrl.idx">
+
+			<button ng-click="ctrl.pageUp()">Next Image >></button>
+
+		<div>
+
+			<img ng-src="{{ctrl.images[ctrl.idx].location}}" 
 		 	 style="max-width: 375px">
-		 	 <div ng-repeat="caption in image.captions">
-		 	 	<span ng-bind="caption.text"></span><br><br>
+		 	 <div ng-repeat="caption in ctrl.images[ctrl.idx].captions">
+		 	 	<span ng-bind="caption.text"></span>
+		 	 	{{ caption.votes }}
+		 	 	<button ng-click="ctrl.vote($index)"
+		 	 			ng-hide="caption.hasVoted">
+		 	 			up vote
+		 	 	</button>
+		 	 	<br><br>
 		 	 </div>
 
 		 	 <div>
 				<form>
 					<input type="text"
-						   ng-model="newCaption">
+						   ng-model="ctrl.newCaption">
 					<input type="submit"
 						   value="add"
-						   ng-click="ctrl.add(newCaption, image._id)">
+						   ng-click="ctrl.add(ctrl.images[ctrl.idx]._id)">
 				</form>
 			</div>
 

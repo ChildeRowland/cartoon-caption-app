@@ -65,6 +65,17 @@ April 1, 2016
 			add captions
 
 
+#############
+April 5, 2016
+
+	file-upload.js
+		save images to file system
+
+
+#############
+April 6, 2016
+
+
 
 
 
