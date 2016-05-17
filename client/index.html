@@ -13,10 +13,49 @@
 				Not So Nacho
 			</h1>
 
-			<input type="number"
+			<!-- flip through word options -->
+			<div>
+				<h3>
+					<span>
+						Be 
+					</span>
+					<span id="flipper">
+						Special
+					</span>
+				</h3>
+			</div>
+			<!-- function to cycle through words -->
+			<script type="text/javascript">
+				var wordChoices = [
+					"Coolio",
+					"Awesome Sause",
+					"Smelly",
+					"for Goober",
+					"Hot Stuff!",
+					"Bad to the Bone"
+				];
+
+				(function() {
+					var i = 0;
+
+					function wordFlipper() {
+						document.getElementById("flipper").innerHTML = wordChoices[i];
+						i++;
+
+						if( i < wordChoices.length ) {
+							setTimeout( wordFlipper, 500 );
+						}
+					}
+
+					wordFlipper();
+				})();
+				
+			</script>
+
+			<!-- <input type="number"
 				   ng-model="ctrl.idx">
 
-			<button ng-click="ctrl.pageUp()">Next Image >></button>
+			<button ng-click="ctrl.pageUp()">Next Image >></button> -->
 
 		<div>
 
