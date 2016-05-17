@@ -24,7 +24,8 @@
 					</span>
 				</h3>
 			</div>
-			<!-- function to cycle through words -->
+			
+			<!-- script to cycle through words -->
 			<script type="text/javascript">
 				var wordChoices = [
 					"Coolio",
@@ -35,6 +36,7 @@
 					"Bad to the Bone"
 				];
 
+				// Durstenfeld Shuffle
 				function shuffleArray(array) {
 					for ( i = array.length - 1; i > 0; i-- ) {
 						var j = Math.floor(Math.random() * ( i * 1));
@@ -45,11 +47,12 @@
 					return array;
 				}
 
-				function wordFlipper() {
-					document.getElementById("flipper").innerHTML = shuffledWords[i];
+				function wordFlipper(array) {
+					array = array || shuffledWords;
+					document.getElementById("flipper").innerHTML = array[i];
 					i++;
 
-					if( i < shuffledWords.length ) {
+					if( i < array.length ) {
 						setTimeout( wordFlipper, 300 );
 					}
 				}
