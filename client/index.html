@@ -35,20 +35,28 @@
 					"Bad to the Bone"
 				];
 
-				(function() {
-					var i = 0;
-
-					function wordFlipper() {
-						document.getElementById("flipper").innerHTML = wordChoices[i];
-						i++;
-
-						if( i < wordChoices.length ) {
-							setTimeout( wordFlipper, 500 );
-						}
+				function shuffleArray(array) {
+					for ( i = array.length - 1; i > 0; i-- ) {
+						var j = Math.floor(Math.random() * ( i * 1));
+						var temp = array[i];
+						array[i] = array[j];
+						array[j] = temp;
 					}
+					return array;
+				}
 
-					wordFlipper();
-				})();
+				function wordFlipper() {
+					document.getElementById("flipper").innerHTML = shuffledWords[i];
+					i++;
+
+					if( i < shuffledWords.length ) {
+						setTimeout( wordFlipper, 300 );
+					}
+				}
+
+				shuffledWords = shuffleArray(wordChoices);
+				var i = 0;
+				wordFlipper();
 				
 			</script>
 
