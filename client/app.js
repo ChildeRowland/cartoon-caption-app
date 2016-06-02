@@ -9,6 +9,20 @@ angular.module('captionApp', ['ui.bootstrap'])
 	self.images;
 	self.newCaption;
 	self.idx = 0;
+	self.page = 'caption';
+
+	self.render = {
+		captionView: function () {
+			return self.page === 'caption';
+		},
+		newtoonView: function () {
+			return self.page === 'newtoon'
+		}
+	};
+
+	self.pager = function (page) {
+		self.page = page;
+	};
 
 	self.working = "Cartoon Caption Contest";
 

@@ -13,62 +13,21 @@
 				Not So Nacho
 			</h1>
 
-			<!-- flip through word options -->
 			<div>
-				<h3>
-					<span>
-						Be 
-					</span>
-					<span id="flipper">
-						Special
-					</span>
-				</h3>
-			</div>
-			
-			<!-- script to cycle through words -->
-			<script type="text/javascript">
-				var wordChoices = [
-					"Coolio",
-					"Awesome Sause",
-					"Smelly",
-					"for Goober",
-					"Hot Stuff!",
-					"Bad to the Bone"
-				];
-
-				// Durstenfeld Shuffle
-				function shuffleArray(array) {
-					for ( i = array.length - 1; i > 0; i-- ) {
-						var j = Math.floor(Math.random() * ( i * 1));
-						var temp = array[i];
-						array[i] = array[j];
-						array[j] = temp;
-					}
-					return array;
-				}
-
-				function wordFlipper(array) {
-					array = array || shuffledWords;
-					document.getElementById("flipper").innerHTML = array[i];
-					i++;
-
-					if( i < array.length ) {
-						setTimeout( wordFlipper, 300 );
-					}
-				}
-
-				shuffledWords = shuffleArray(wordChoices);
-				var i = 0;
-				wordFlipper();
-				
-			</script>
+				<button ng-click="ctrl.pager('caption')">
+					captions
+				</button>
+				<button ng-click="ctrl.pager('newtoon')">
+					new toon
+				</button>
+			</div><br><br>
 
 			<!-- <input type="number"
 				   ng-model="ctrl.idx">
 
 			<button ng-click="ctrl.pageUp()">Next Image >></button> -->
 
-		<div>
+		<div ng-if="ctrl.render.captionView()">
 
 			<img ng-src="{{ctrl.images[ctrl.idx].location}}" 
 		 	 style="max-width: 375px">
@@ -92,6 +51,18 @@
 				</form>
 			</div>
 
+		</div>
+
+		<div ng-if="ctrl.render.newtoonView()">
+			<form action="/upload" enctype="multipart/form-data" method="post">
+				Add a title: 
+				<!-- the 'title' should be the 'location' -->
+				<input name="title" type="text" /><br><br>
+				Give a brief description:
+				<input name="description" type="text"><br><br>
+				<input multiple="multiple" name="upload" type="file" /><br><br>
+				<input type="submit" value="Upload" />
+			</form>
 		</div>
 
 		<pre>

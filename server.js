@@ -21,6 +21,7 @@ app.get('/', function (req, res) {
 	res.render('index.html');
 });
 
+
 imageRoutes(router);
 
 app.use('/', router);
